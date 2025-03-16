@@ -9,7 +9,11 @@
     --green4:rgb(181, 186, 161);
     --green5:rgb(229, 231, 220);
     --green6:rgb(254, 255, 250);
+    --blue2:#84b0c5;
+    --red2:#DF79A2;
+    --yellow2:#e8c14c;
     --gray2:#757575;
+    --gray3:#bcbcbc;
 }
 
 body {
@@ -190,13 +194,6 @@ a:hover {
     border: 5px solid var(--green5);
 }
 
-/* .project-tile-box {
-    position: absolute;
-    inset: 0;
-    background-color: white;
-    border: 5px solid var(--green5);
-} */
-
 .project-tile-logo {
     display: flex;
     justify-content: center;
@@ -233,22 +230,15 @@ a:hover {
         transform .1s ease-in;
 }
 
-/* .project-tile:hover>* {
-    transform: none !important;
-} */
-
 .project-tile:hover .project-tile-title {
-    /* transform: none !important; */
     color: black;
     transition: color .1s ease-in;
 }
 
 .project-tile:hover .project-tile-desc {
-    /* transform: none !important; */
     color: black;
     transition: color .1s ease-in;
 }
-
 
 /* Project-specific */
 
@@ -271,12 +261,8 @@ a:hover {
 }
 
 @keyframes rotate {
-    from {
-        transform: rotate(0);
-    }
-    to {
-        transform: rotate(1turn);
-    }
+    from { transform: rotate(0); }
+    to { transform: rotate(1turn); }
 }
 
 #popden rect {
@@ -312,6 +298,84 @@ a:hover {
     transition: stroke .1s ease-in;
 }
 
+#mrio {
+    --mrio-base-opacity: .4;
+    --mrio-highlight-opacity: .8;
+    --mrio-duration: 4s;
+}
+
+#mrio .header {
+    opacity: var(--mrio-base-opacity);
+    fill: var(--gray3);
+}
+
+#mrio .input {
+    fill: var(--blue2);
+    animation-name: input-highlight;
+    animation-duration: var(--mrio-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#mrio .va {
+    fill: var(--red2);
+    animation-name: va-highlight;
+    animation-duration: var(--mrio-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#mrio .final {
+    fill: var(--yellow2);
+    animation-name: final-highlight;
+    animation-duration: var(--mrio-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#mrio .output {
+    fill: var(--green3);
+    animation-name: output-highlight;
+    animation-duration: var(--mrio-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes input-highlight {
+    0% { opacity: var(--mrio-base-opacity); }
+    20% { opacity: var(--mrio-highlight-opacity); }
+    40% { opacity: var(--mrio-base-opacity); }
+    100% { opacity: var(--mrio-base-opacity); }
+}
+
+@keyframes va-highlight {
+    0% { opacity: var(--mrio-base-opacity); }
+    20% { opacity: var(--mrio-base-opacity); }
+    40% { opacity: var(--mrio-highlight-opacity); }
+    60% { opacity: var(--mrio-base-opacity); }
+    100% { opacity: var(--mrio-base-opacity); }
+}
+
+@keyframes final-highlight {
+    0% { opacity: var(--mrio-base-opacity); }
+    40% { opacity: var(--mrio-base-opacity); }
+    60% { opacity: var(--mrio-highlight-opacity); }
+    80% { opacity: var(--mrio-base-opacity); }
+    100% { opacity: var(--mrio-base-opacity); }
+}
+
+@keyframes output-highlight {
+    0% { opacity: var(--mrio-base-opacity); }
+    60% { opacity: var(--mrio-base-opacity); }
+    80% { opacity: var(--mrio-highlight-opacity); }
+    100% { opacity: var(--mrio-base-opacity); }
+}
+
+#mrio.project-tile:hover {
+    --mrio-base-opacity: .6;
+    --mrio-highlight-opacity: 1;
+}
+
 /* Footer */
 
 footer {
@@ -333,5 +397,3 @@ footer {
     font-size: .825em;
     color: var(--gray2);
 }
-
-
