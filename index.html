@@ -15,22 +15,21 @@
     
     <header id="site-header">
        <div class="brand">
-        <span class="brand-title">Kenneth S. Reyes</span>
+        <a href="" class="brand-title">Kenneth S. Reyes</a>
        </div>
     </header>
 
-    <div id="main">
+    <div id="content">
 
-        <div class="content">
+        <main>
 
             <div id="banner">
                 <div id="pic">
-                    <img src="assets/profile.jpg" alt="Your Name" class="profile-pic">
+                    <img src="assets/profile.jpg" class="profile-pic">
                 </div>
                 <div id="bio">
                     <h1>My name is <span class="green">Ken</span>,</h1>
-                    <p>and I make charts using code.</p>
-                    <p>My craft is to capture complex ideas into elegant visuals, whether to popularize <a href="https://twopoints.blog/posts/2023-04-22-the-tales-we-tell">academic research</a>, dissect <a href="https://twopoints.blog/posts/2023-04-06-bikes">public policy</a>, or for the simple <a href="https://twopoints.blog/posts/2023-01-26-oscars">fun</a> of it.</p>
+                    <p>and I make charts using code. Whether to popularize <a href="https://twopoints.blog/posts/2023-04-22-the-tales-we-tell">academic research</a>, dissect <a href="https://twopoints.blog/posts/2023-04-06-bikes">public policy</a>, understand <a href="https://twopoints.blog/posts/2023-05-29-in-persuasion-nation">current events</a>, or simply for the <a href="https://twopoints.blog/posts/2023-01-26-oscars">fun</a> of it – creating sharp, elegant visuals is my craft.</p>
                     <p>Based in Berlin since 2024.</p>
                     <div class="bio-buttons">
                         <a href=""><div class="bio-button">CV</div></a>
@@ -49,6 +48,7 @@
                     <!-- Two Points Make a Line -->
                     <a href="https://twopoints.blog" class="project-tile-link">
                         <div class="project-tile" id="twopoints">
+                            <!-- <div class="project-tile-box"></div> -->
                             <div class="project-tile-logo"><img src="assets/twopoints.png"></div>
                             <span class="project-tile-title">Two Points Make a Line</span>
                             <p class="project-tile-desc">A dataviz blog</p>
@@ -82,14 +82,38 @@
                         </div>
                     </a>
 
+                    <!-- Snapshot -->
+                    <a href="" class="project-tile-link">
+                        <div class="project-tile" id="snapshot">
+                            <div class="project-tile-logo"></div>
+                            <span class="project-tile-title">Snapshot</span>
+                            <p class="project-tile-desc">Automated generation of statistical reports</p>
+                        </div>
+                    </a>
+
+                    <!-- MRIO -->
+                    <a href="https://github.com/ksreyes/mrio-processing" class="project-tile-link">
+                        <div class="project-tile" id="mrio">
+                            <div class="project-tile-logo"></div>
+                            <span class="project-tile-title">IOT Processing</span>
+                            <p class="project-tile-desc">Scripts for parsing global input-output tables</p>
+                        </div>
+                    </a>
+
 
                 </div>
             </div>
 
-        </div>
+            <script type="module" src="main.js"></script>
 
+        </main>
     </div>
 
-    <script type="module" src="main.js"></script>
+    <footer>
+        <div class="page-footer">
+            <div id="copyright"> Copyright © 2025 Kenneth S. Reyes</div>
+        </div>
+    </footer>
+
 </body>
 </html>
