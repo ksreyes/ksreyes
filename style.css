@@ -10,6 +10,8 @@
     --green5:rgb(229, 231, 220);
     --green6:rgb(254, 255, 250);
     --blue2:#84b0c5;
+    --blue3:#a4c7d7;
+    --blue5:#EDF8FF;
     --red2:#DF79A2;
     --yellow2:#e8c14c;
     --gray2:#757575;
@@ -278,6 +280,8 @@ a:hover {
     transition: fill .1s ease-in;
 }
 
+/* Learning Curves */
+
 #econ path {
     opacity: .5;
 }
@@ -297,6 +301,40 @@ a:hover {
     stroke: var(--green3);
     transition: stroke .1s ease-in;
 }
+
+/* Missing Migrants */
+
+#mmp .globe {
+    opacity: .5;
+    fill: var(--blue3);
+    stroke: none;
+    stroke-width: 0;
+}
+
+#mmp .country {
+    fill: var(--green6);
+}
+
+#mmp.project-tile:hover .globe {
+    opacity: .8;
+    transition: opacity .1s ease-in;
+}
+
+#mmp .spike {
+    fill: var(--red2);
+    fill-opacity: 0.4;
+    transition: opacity 350ms;
+}
+
+#mmp .spike.hide {
+    opacity: 0;
+}
+
+#mmp.project-tile:hover .spike {
+    fill-opacity: 0.75;
+}
+
+/* MRIO */
 
 #mrio {
     --mrio-base-opacity: .4;
@@ -375,6 +413,9 @@ a:hover {
     --mrio-base-opacity: .6;
     --mrio-highlight-opacity: 1;
 }
+
+
+
 
 /* Footer */
 

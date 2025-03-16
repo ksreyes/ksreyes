@@ -9,6 +9,7 @@
     <script src="https://unpkg.com/d3-force-surface/dist/d3-force-surface.min.js"></script>
     <script src="https://unpkg.com/d3-force-limit"></script>
     <script src="https://unpkg.com/topojson@3"></script>
+    <script src="https://unpkg.com/geometric@2.5.5/build/geometric.js"></script>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -29,7 +30,7 @@
                 </div>
                 <div id="bio">
                     <h1>My name is <span class="green">Ken</span>,</h1>
-                    <p>and I make charts using code. Whether to popularize <a href="https://twopoints.blog/posts/2023-04-22-the-tales-we-tell">academic research</a>, dissect <a href="https://twopoints.blog/posts/2023-04-06-bikes">public policy</a>, understand <a href="https://twopoints.blog/posts/2023-05-29-in-persuasion-nation">current events</a>, or simply for the <a href="https://twopoints.blog/posts/2023-01-26-oscars">fun</a> of it – creating sharp, elegant visuals is my craft.</p>
+                    <p>and I make charts using code. Be it for <a href="https://twopoints.blog/posts/2023-04-22-the-tales-we-tell">academic research</a>, <a href="https://twopoints.blog/posts/2023-04-06-bikes">public policy</a>, or <a href="https://twopoints.blog/posts/2023-05-29-in-persuasion-nation">current events</a>, the sharp, elegant visual is essential for clear thinking.</p>
                     <p>Based in Berlin since 2024.</p>
                     <div class="bio-buttons">
                         <a href=""><div class="bio-button">CV</div></a>
@@ -74,7 +75,7 @@
 
                     <!-- Missing Migrants -->
                     <a href="" class="project-tile-link">
-                        <div class="project-tile">
+                        <div class="project-tile" id="mmp">
                             <div class="project-tile-logo"></div>
                             <span class="project-tile-title">Missing Migrants</span>
                             <p class="project-tile-desc">Tallying the costs of irregular migration</p>
