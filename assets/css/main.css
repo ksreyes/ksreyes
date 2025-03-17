@@ -46,7 +46,7 @@ a.brand-title:hover {
 
 /* Body */
 
-#content {
+.content {
     display: grid;
     gap: 0;
     grid-template-columns: 
@@ -64,7 +64,7 @@ a.brand-title:hover {
     min-height: calc(-72px + 100vh);
 }
 
-#content>* {
+.content > * {
     grid-column: body-content-start / body-content-end;
 }
 
@@ -72,7 +72,7 @@ a.brand-title:hover {
 
 @media screen and (max-width: 900px) {
 
-    #content {
+    .content {
         display: grid;
         gap: 0;
         grid-template-columns: 
@@ -92,7 +92,7 @@ a.brand-title:hover {
             [screen-end];
     }
 
-    #content>* {
+    .content>* {
         grid-column: page-start / body-content-end;
     }
 }
@@ -111,7 +111,7 @@ a.brand-title:hover {
         padding: 3px 0px;
     }
 
-    #content {
+    .content {
         display: grid;
         gap: 0;
         grid-template-columns: 
@@ -131,7 +131,7 @@ a.brand-title:hover {
             [screen-end];
     }
 
-    #content>* {
+    .content>* {
         grid-column: page-start / body-content-end;
     }
 
@@ -173,7 +173,7 @@ a:hover {
 
 /* Banner */
 
-#banner {
+.banner {
     max-width: 800px;
     display: flex;
     flex-direction: row;
