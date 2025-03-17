@@ -1,0 +1,42 @@
+
+@import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800');
+
+:root {
+    --body-font-family: "Poppins";
+
+    --width: 800px;
+
+    --green1:hsl(70, 20%, 25%);
+    --green2:hsl(70, 20%, 35%);
+    --green3:hsl(70, 20%, 45%);
+    --green4:hsl(70, 20%, 55%);
+    --green5:hsl(70, 20%, 65%);
+    --green6:hsl(70, 20%, 75%);
+    --green7:hsl(70, 30%, 85%);
+    --green8:hsl(70, 30%, 95%);
+
+    --blue1:hsl(200, 30%, 25%);
+    --blue2:hsl(200, 30%, 35%);
+    --blue3:hsl(200, 30%, 45%);
+    --blue4:hsl(200, 30%, 55%);
+    --blue5:hsl(200, 30%, 65%);
+    --blue6:hsl(200, 30%, 75%);
+
+    --red1:hsl(335, 60%, 55%);
+    --red2:hsl(335, 60%, 65%);
+    --red3:hsl(335, 60%, 75%);
+    --red4:hsl(335, 60%, 85%);
+    --red5:hsl(335, 60%, 95%);
+
+    --yellow1:hsl(45, 75%, 55%);
+    --yellow2:hsl(45, 75%, 60%);
+    --yellow3:hsl(45, 75%, 65%);
+    --yellow4:hsl(45, 75%, 70%);
+    --yellow5:hsl(45, 75%, 75%);
+    
+    --gray1:hsl(0, 0%, 35%);
+    --gray2:hsl(0, 0%, 45%);
+    --gray3:hsl(0, 0%, 55%);
+    --gray4:hsl(0, 0%, 65%);
+    --gray5:hsl(0, 0%, 75%);
+}

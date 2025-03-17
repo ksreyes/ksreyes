@@ -1,13 +1,11 @@
 
-/* Parent container */
+/* Parent containers */
 
 #projects {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
-
-/* Child container */
 
 #projects-tiles {
     display: grid;
@@ -29,20 +27,32 @@
     padding: 15px 10px 10px 10px;
 }
 
-@media screen and (max-width: 720px) {
+/*** Mid-width *********************************/
+
+@media screen and (max-width: 750px) {
 
     #projects-tiles {
-        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: .75rem;
+        row-gap: .75rem;
+    }
+
+}
+
+/*** Mobile ************************************/
+
+@media screen and (max-width: 500px) {
+
+    #projects-tiles {
         grid-template-columns: repeat(2, 1fr);
-        column-gap: 1rem;
-        row-gap: 1rem;
+        column-gap: .75rem;
+        row-gap: .75rem;
     }
 
     .project-tile {
         height: 200px;
     }
 }
-
 
 .project-tile-box {
     position: absolute;
@@ -55,6 +65,7 @@
     background-color: white;
     border: 5px solid var(--green7);
 }
+
 .project-tile-logo {
     display: flex;
     justify-content: center;
@@ -86,10 +97,12 @@
     font-weight: normal;
 }
 
+/*** Hover effects *****************************/
+
 .project-tile:hover .project-tile-box {
     background-color: var(--green8);
     border-color: var(--green4);
-    transform: scale(1.02);
+    transform: scale(1.01);
     transition: 
         background-color .1s ease-in, 
         border-color .1s ease-in,
@@ -98,7 +111,7 @@
 
 .project-tile:hover .project-tile-title {
     color: var(--green1);
-    transition: color .1s ease-in, scale .1s ease-in;
+    transition: color .1s ease-in;
 }
 
 .project-tile:hover .project-tile-desc {
@@ -106,7 +119,9 @@
     transition: color .1s ease-in;
 }
 
-/* Project-specific */
+/*** Project-specific **************************/
+
+/* Two Points */
 
 #twopoints .project-tile-logo img {
     opacity: .7;
@@ -130,6 +145,8 @@
     from { transform: rotate(0); }
     to { transform: rotate(1turn); }
 }
+
+/* Particles */
 
 #popden rect {
     fill: none;
@@ -170,7 +187,7 @@
 
 #mmp .globe {
     opacity: .5;
-    fill: var(--blue3);
+    fill: var(--blue6);
     stroke: none;
     stroke-width: 0;
 }
@@ -191,7 +208,7 @@
 
 #mmp .spike {
     fill: var(--red2);
-    fill-opacity: 0.4;
+    fill-opacity: 0.6;
     transition: opacity 350ms;
 }
 
@@ -200,7 +217,7 @@
 }
 
 #mmp.project-tile:hover .spike {
-    fill-opacity: 0.75;
+    fill-opacity: 0.85;
 }
 
 /* MRIO */
@@ -213,11 +230,11 @@
 
 #mrio .header {
     opacity: var(--mrio-base-opacity);
-    fill: var(--gray3);
+    fill: var(--gray4);
 }
 
 #mrio .input {
-    fill: var(--blue2);
+    fill: var(--blue3);
     animation-name: input-highlight;
     animation-duration: var(--mrio-duration);
     animation-timing-function: linear;
@@ -241,7 +258,7 @@
 }
 
 #mrio .output {
-    fill: var(--green3);
+    fill: var(--green4);
     animation-name: output-highlight;
     animation-duration: var(--mrio-duration);
     animation-timing-function: linear;
@@ -282,3 +299,4 @@
     --mrio-base-opacity: .6;
     --mrio-highlight-opacity: 1;
 }
+
