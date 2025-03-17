@@ -1,0 +1,21 @@
+
+.title-block {
+    text-align: center;
+}
+
+#particles-container .forms {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: var(--width);
+}
+
+#particles-container .form {
+    display: flex;
+    align-items: center;
+}
+
+#particles-container form#particles-dropdown select {
+    width: 250px;
+    height: auto;
+}

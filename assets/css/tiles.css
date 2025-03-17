@@ -1,0 +1,284 @@
+
+/* Parent container */
+
+#projects {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Child container */
+
+#projects-tiles {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 1rem;
+    row-gap: 1rem;
+}
+
+/* Tile template */
+
+.project-tile {
+    position: relative;
+    grid-column: auto / span 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    height: 220px;
+    padding: 15px 10px 10px 10px;
+}
+
+@media screen and (max-width: 720px) {
+
+    #projects-tiles {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1rem;
+        row-gap: 1rem;
+    }
+
+    .project-tile {
+        height: 200px;
+    }
+}
+
+
+.project-tile-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -99;
+    box-sizing: border-box;
+    background-color: white;
+    border: 5px solid var(--green7);
+}
+.project-tile-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+}
+
+.project-tile-title {
+    font-size: 1.2em;
+    font-weight: 500;
+    line-height: 1em;
+    text-align: center;
+    margin: 10px 0px;
+}
+
+.project-tile-desc {
+    font-size: .8em;
+    margin: 0px;
+}
+
+.project-tile-link {
+    color: var(--green3);
+    font-weight: normal;
+}
+
+.project-tile-link .project-tile-desc {
+    color: var(--green4);
+    font-weight: normal;
+}
+
+.project-tile:hover .project-tile-box {
+    background-color: var(--green8);
+    border-color: var(--green4);
+    transform: scale(1.02);
+    transition: 
+        background-color .1s ease-in, 
+        border-color .1s ease-in,
+        transform .1s ease-in;
+}
+
+.project-tile:hover .project-tile-title {
+    color: var(--green1);
+    transition: color .1s ease-in, scale .1s ease-in;
+}
+
+.project-tile:hover .project-tile-desc {
+    color: var(--green2);
+    transition: color .1s ease-in;
+}
+
+/* Project-specific */
+
+#twopoints .project-tile-logo img {
+    opacity: .7;
+    width: 110px;
+    height: auto;
+}
+
+#twopoints.project-tile:hover .project-tile-logo img {
+    opacity: .9;
+    transition: opacity .1s ease-in;
+}
+
+#twopoints .project-tile-logo img {
+    animation-name: rotate;
+    animation-duration: 30s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0); }
+    to { transform: rotate(1turn); }
+}
+
+#popden rect {
+    fill: none;
+}
+
+#popden circle {
+    fill: var(--green4);
+}
+
+#popden.project-tile:hover circle {
+    fill: var(--green3);
+    transition: fill .1s ease-in;
+}
+
+/* Learning Curves */
+
+#econ path {
+    opacity: .5;
+}
+
+#econ #econ-axes {
+    opacity: 1;
+    stroke: var(--green5);
+    stroke-width: 3px;
+}
+
+#econ.project-tile:hover path {
+    opacity: 1;
+    transition: opacity .1s ease-in;
+}
+
+#econ.project-tile:hover #econ-axes {
+    stroke: var(--green3);
+    transition: stroke .1s ease-in;
+}
+
+/* Missing Migrants */
+
+#mmp .globe {
+    opacity: .5;
+    fill: var(--blue3);
+    stroke: none;
+    stroke-width: 0;
+}
+
+#mmp .country {
+    fill: var(--green6);
+}
+
+#mmp.project-tile:hover .globe {
+    opacity: .8;
+    transition: opacity .1s ease-in;
+}
+
+#mmp.project-tile:hover .country {
+    fill: var(--green4);
+    transition: fill .1s ease-in;
+}
+
+#mmp .spike {
+    fill: var(--red2);
+    fill-opacity: 0.4;
+    transition: opacity 350ms;
+}
+
+#mmp .spike.hide {
+    opacity: 0;
+}
+
+#mmp.project-tile:hover .spike {
+    fill-opacity: 0.75;
+}
+
+/* MRIO */
+
+#mrio {
+    --mrio-base-opacity: .4;
+    --mrio-highlight-opacity: .8;
+    --mrio-duration: 4s;
+}
+
+#mrio .header {
+    opacity: var(--mrio-base-opacity);
+    fill: var(--gray3);
+}
+
+#mrio .input {
+    fill: var(--blue2);
+    animation-name: input-highlight;
+    animation-duration: var(--mrio-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#mrio .va {
+    fill: var(--red2);
+    animation-name: va-highlight;
+    animation-duration: var(--mrio-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#mrio .final {
+    fill: var(--yellow2);
+    animation-name: final-highlight;
+    animation-duration: var(--mrio-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+#mrio .output {
+    fill: var(--green3);
+    animation-name: output-highlight;
+    animation-duration: var(--mrio-duration);
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes input-highlight {
+    0% { opacity: var(--mrio-base-opacity); }
+    20% { opacity: var(--mrio-highlight-opacity); }
+    40% { opacity: var(--mrio-base-opacity); }
+    100% { opacity: var(--mrio-base-opacity); }
+}
+
+@keyframes va-highlight {
+    0% { opacity: var(--mrio-base-opacity); }
+    20% { opacity: var(--mrio-base-opacity); }
+    40% { opacity: var(--mrio-highlight-opacity); }
+    60% { opacity: var(--mrio-base-opacity); }
+    100% { opacity: var(--mrio-base-opacity); }
+}
+
+@keyframes final-highlight {
+    0% { opacity: var(--mrio-base-opacity); }
+    40% { opacity: var(--mrio-base-opacity); }
+    60% { opacity: var(--mrio-highlight-opacity); }
+    80% { opacity: var(--mrio-base-opacity); }
+    100% { opacity: var(--mrio-base-opacity); }
+}
+
+@keyframes output-highlight {
+    0% { opacity: var(--mrio-base-opacity); }
+    60% { opacity: var(--mrio-base-opacity); }
+    80% { opacity: var(--mrio-highlight-opacity); }
+    100% { opacity: var(--mrio-base-opacity); }
+}
+
+#mrio.project-tile:hover {
+    --mrio-base-opacity: .6;
+    --mrio-highlight-opacity: 1;
+}
