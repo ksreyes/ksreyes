@@ -1,5 +1,5 @@
 
-const green = {
+export const green = {
     1: "hsl(70, 30%, 25%)",
     2: "hsl(70, 20%, 35%)",
     3: "hsl(70, 20%, 45%)",
@@ -10,7 +10,7 @@ const green = {
     8: "hsl(70, 30%, 95%)"
 };
 
-const blue = {
+export const blue = {
     1: "hsl(200, 30%, 25%)",
     2: "hsl(200, 30%, 35%)",
     3: "hsl(200, 30%, 45%)",
@@ -21,7 +21,7 @@ const blue = {
     8: "hsl(200, 30%, 95%)"
 };
 
-const red = {
+export const red = {
     1: "hsl(335, 60%, 55%)",
     2: "hsl(335, 60%, 65%)",
     3: "hsl(335, 60%, 75%)",
@@ -29,7 +29,7 @@ const red = {
     5: "hsl(335, 60%, 95%)"
 };
 
-const yellow = {
+export const yellow = {
     1: "hsl(45, 75%, 55%)",
     2: "hsl(45, 75%, 60%)",
     3: "hsl(45, 75%, 65%)",
@@ -37,7 +37,7 @@ const yellow = {
     5: "hsl(45, 75%, 75%)"
 };
 
-const gray = {
+export const gray = {
     1: "hsl(0, 0%, 35%)",
     2: "hsl(0, 0%, 45%)",
     3: "hsl(0, 0%, 55%)",
