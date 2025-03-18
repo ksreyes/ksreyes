@@ -4,7 +4,7 @@ export function mmp(container) {
 
     Promise.all([
     
-        d3.json("./data/land-110m.json")
+        d3.json("./assets/data/land-110m.json")
     
     ]).then(function([mapRaw]) {
     
