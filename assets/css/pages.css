@@ -52,6 +52,14 @@
         margin: 0px 0px 20px 0px;
     }
 
+    .page .description {
+        margin: 10px 0px 20px 0px;
+    }
+    
+    .page .notes {
+        margin: 10px 0px 20px 0px;
+    }
+
     .page section {
         display: grid;
         grid-template-columns: 
