@@ -1,10 +1,13 @@
 
 @import url('https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700,800');
+@import url('https://fonts.googleapis.com/css2?family=Playpen+Sans:wght@400&display=swap');
 
 :root {
     --body-font-family: "Poppins";
 
     --width: 800px;
+    --dashboard-width: 1000px;
+    --dashboard-width-mobile: 920px;
 
     --green1:hsl(70, 20%, 25%);
     --green2:hsl(70, 20%, 35%);

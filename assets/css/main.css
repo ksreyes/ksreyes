@@ -131,7 +131,7 @@ a.brand-title:hover {
             [screen-end];
     }
 
-    .content>* {
+    .content > * {
         grid-column: page-start / body-content-end;
     }
 

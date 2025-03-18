@@ -1,21 +1,172 @@
 
-.title-block {
+/*** General *****************************************************************/
+
+.page .content {
+    overflow-x: scroll;
+}
+
+.page header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.page .intro {
+    margin: 0px 50px 20px 50px;
+}
+
+.page section {
+    display: grid;
+}
+
+.page .title-block {
     text-align: center;
+}
+
+.page-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 120px;
+}
+
+.page .subtitle {
+    font-size: 1.2em;
+    margin-top: 0px;
+    margin-bottom: 50px;
+}
+
+.page .description {
+    margin: 30px 50px 20px 50px;
+}
+
+.page .notes {
+    font-size: .8em;
+    margin: 30px 50px 20px 50px;
+}
+
+@media screen and (max-width: 500px) {
+
+    .page .intro {
+        margin: 0px 0px 20px 0px;
+    }
+
+    .page section {
+        display: grid;
+        grid-template-columns: 
+            [screen-start]                  1.5em 
+            [screen-start-inset 
+                page-start 
+                page-start-inset 
+                body-start-outset 
+                body-start 
+                body-content-start]         minmax(0px, 1fr) 
+            [body-content-end 
+                body-end 
+                body-end-outset 
+                page-end-inset 
+                page-end 
+                screen-end-inset]           1.5em
+            [screen-end];
+    }
+}
+
+/*** Particles ***************************************************************/
+
+#particles-container {
+    display: grid;
+    grid-column: body-start-outset / body-end-outset;
+}
+
+#particles-container .annotation {
+    display: flex;
+    justify-content: center;
+}
+
+#particles-container #annotation-arrow {
+    stroke-linejoin: "round";
+    stroke: var(--red1);
+    stroke-width: 2px;
+    fill: none;
+}
+
+#particles-container .annotation-arrow {
+    stroke: var(--red1);
+    stroke-width: 2px;
+    fill: none;
+}
+
+#particles-container .annotation-text {
+    font-family: "Playpen Sans", sans-serif;
+    font-size: .9em;
+    fill: var(--red1);
+    text-anchor: middle;
+}
+
+#particles-container .annotation-forms .annotation-text {
+    transform: rotate(-5deg);
+}
+
+#particles-container .annotation-legend .annotation-text {
+    transform: none;
 }
 
 #particles-container .forms {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    width: var(--width);
+    width: var(--dashboard-width);
 }
 
 #particles-container .form {
     display: flex;
     align-items: center;
+    margin: 15px 0px;
 }
 
 #particles-container form#particles-dropdown select {
+    font: var(--body-font-family);
+    font-size: 1em;
     width: 250px;
     height: auto;
+}
+
+#particles-container .legend {
+    display: flex;
+    justify-content: center;
+}
+
+#particles-container .panels {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+#particles-container .panel {
+    width: auto;
+    height: auto;
+}
+
+#particles-container .panel-bg {
+    fill: var(--green8);
+    stroke: var(--green7);
+    stroke-width: 7px;
+}
+
+
+@media screen and (max-width: 500px) {
+
+    #particles-container {
+        grid-column: screen-start / body-content-end;
+    }
+
+    #particles-container .panels {
+        justify-content: space-around;
+    }
+    
+    #particles-container .forms {
+        width: var(--dashboard-width-mobile);
+    }
+
 }

@@ -1,37 +1,132 @@
 
+import { popden } from "../home/popden-icon.js";
+import { addFormsAnnotation, addLegendAnnotation } from "./annotations.js";
+import * as colors from "../colors.js";
 
-const cities = [
-    { name: "Manila", value: 100 },
-    { name: "Mandaluyong", value: 100 },
-    { name: "San Juan", value: 100 },
+const params = { 
+    width: 450, 
+    height: 400, 
+    formLabelsHeight: 90,
+    legendWidth: 450,
+    legendHeight: 40,
+    rMean: 5
+};
+params.rSD = params.rMean * .75;
+params.velocity = params.rMean * .80;
+
+
+// Icon ///////////////////////////////////////////////////////////////////////
+
+d3.select(".page-icon").call(popden);
+
+
+// Dashboard //////////////////////////////////////////////////////////////////
+
+// Forms annotations
+
+d3.select("#particles-container .annotation.annotation-forms")
+    .call(addFormsAnnotation, params);
+
+const color = d3.scaleOrdinal()
+    .domain([1, 2, 3, 4, 5])
+    .range([
+        colors.blue[3],
+        colors.green[4],
+        colors.yellow[3],
+        colors.red[2],
+        colors.red[3]
+    ]);
+
+const bbox = ([[x1, y1], [x2, y2]]) => [
+    { from: { x: x1, y: y1 }, to: { x: x1, y: y2 } },
+    { from: { x: x1, y: y2 }, to: { x: x2, y: y2 } },
+    { from: { x: x2, y: y2 }, to: { x: x2, y: y1 } },
+    { from: { x: x2, y: y1 }, to: { x: x1, y: y1 } }
 ];
-
-const dim = { width: 800, height: 600 };
-
-// Forms
-
-d3.select("#particles-container .form-left")
-    .call(addFormDropdown, cities)
-
-d3.select("#particles-container .form-right")
-    .call(addFormDropdown, cities)
-
 
 // Panels
 
 const panelLeft = d3.select("#particles-container .panel-left")
+    .append("svg")
+        .attr("width", params.width)
+        .attr("height", params.height)
+        .attr("viewBox", [0, 0, params.width, params.height]);
 
-const svg = panelLeft.append("svg")
-    // .attr("id", "viz-svg")
-    .attr("width", dim.width)
-    .attr("viewBox", [0, 0, dim.width, dim.height])
-    .call(addPanel);
+const panelRight = d3.select("#particles-container .panel-right")
+    .append("svg")
+        .attr("width", params.width)
+        .attr("height", params.height)
+        .attr("viewBox", [0, 0, params.width, params.height]);
+
+panelLeft.append("rect")
+    .attr("class", "panel-bg")
+    .attr("width", params.width)
+    .attr("height", params.height);
+
+panelRight.append("rect")
+    .attr("class", "panel-bg")
+    .attr("width", params.width)
+    .attr("height", params.height);
 
 
+// Render panels //////////////////////////////////////////////////////////////
+
+Promise.all([
+
+    d3.csv("./../../assets/data/particles-density.csv"),
+    d3.csv("./../../assets/data/particles-group-assign.csv")
+
+]).then(function([density, groupAssign]) {
+    
+    const densityManila = density.filter(d => d.country === "Philippines");
+    const densityOthers = density.filter(d => d.country !== "Philippines");
+    
+    // Forms
+    const formLeft = d3.select("#particles-container .form-left")
+        .call(addFormDropdown, densityManila)
+    const formRight = d3.select("#particles-container .form-right")
+        .call(addFormDropdown, densityOthers)
+
+    // Default values
+    formLeft.select("option[value='Manila']").attr("selected", true);
+    formRight.select("option[value='New York']").attr("selected", true);
+
+    // Update chart when form changes
+    formLeft.select("select").on("input", renderLeft);
+    formRight.select("select").on("input", renderRight);
+    
+    function renderLeft() {
+        let cityLeft = formLeft.select("select").property("value");
+        panelLeft.selectAll("g").remove();
+        panelLeft.call(addParticles, densityManila, groupAssign, cityLeft);
+    };
+
+    function renderRight() {
+        let cityRight = formRight.select("select").property("value");
+        panelRight.selectAll("g").remove();
+        panelRight.call(addParticles, densityOthers, groupAssign, cityRight);
+    };
+
+    renderLeft();
+    renderRight();
+})
 
 
+// Legend /////////////////////////////////////////////////////////////////////
 
-// Functions
+const legend = d3.select("#particles-container .legend")
+    .append("svg")
+        .attr("width", params.legendWidth)
+        .attr("height", params.legendHeight)
+        .attr("viewBox", [0, 0, params.legendWidth, params.legendHeight])
+
+legend.call(addLegend);
+
+d3.select("#particles-container .annotation.annotation-legend")
+    .call(addLegendAnnotation, params);
+
+
+// Functions //////////////////////////////////////////////////////////////////
 
 function addFormDropdown(container, data) {
   
@@ -48,54 +143,19 @@ function addFormDropdown(container, data) {
 
     const dropdownOptions = dropdown.append("div").append("select");
 
-    for (let i in data) {
-        dropdownOptions.call(addOption, data[i].name);
-    };
+    data.forEach(d => dropdownOptions.call(addOption, d.city));
 
     return container.node();
 };
 
-function addPanel(container) {
+function genpoints(data, assign, city) {
 
+    // Function to generate particles for a given city
 
+    const dataCity = data.filter(d => d.city == city);
+    const density = Math.round(dataCity[0].density / 100);
+    const groupAssignCity = assign.filter(d => d.city === city);
 
-    return container.node();
-};
-
-
-
-// Import data
-density = FileAttachment('../../datasets/particles/density.csv').csv({ typed: true });
-densityManila = density.filter(d => d.country === "Philippines");
-densityOthers = density.filter(d => d.country !== "Philippines");
-groupAssign = FileAttachment('../../datasets/particles/group_assign.csv').csv({ typed: true });
-
-// Parameters
-height = width * .49;                // Height of particle chart
-rMean = (width * .49 / 40) / 2;      // Mean radius
-rSD = rMean * .75;                   // SD radius
-velocity = rMean * .8;               // Particle velocity
-
-colors = ["#4889ab", "#7fc6a4", "#FCB13B", "#B13D70", "#f697bb"];
-
-color = d3.scaleOrdinal()
-    .domain([1, 2, 3, 4, 5])
-    .range(colors);
-
-bbox = ([[x1, y1], [x2, y2]]) => [
-    { from: { x: x1, y: y1 }, to: { x: x1, y: y2 } },
-    { from: { x: x1, y: y2 }, to: { x: x2, y: y2 } },
-    { from: { x: x2, y: y2 }, to: { x: x2, y: y1 } },
-    { from: { x: x2, y: y1 }, to: { x: x1, y: y1 } }
-];
-
-// Function to generate particles for a given city
-
-function genpoints(city) {
-
-    const density = Math.round(city[0].density / 100);
-    
-    const groupAssignCity = groupAssign.filter(d => d.city === city[0].city);
     const counts = groupAssignCity.map(row => row.points_ingroup);
     const groups = [1, 2, 3, 4, 5];
     const groupArray = counts.flatMap((count, i) =>
@@ -105,51 +165,41 @@ function genpoints(city) {
     const points = Array.from(
         { length: density },
         (_, i) => ({
-            x: d3.randomUniform((width * .49 * .15), (width * .49 * .85))(),
-            y: d3.randomUniform(height * .15, height * .85)(),
-            r: d3.randomNormal(rMean, rSD)(),
-            vx: d3.randomUniform(-1, 1)() * velocity,
-            vy: d3.randomUniform(-1, 1)() * velocity,
+            x: d3.randomUniform((params.width * .15), (params.width * .85))(),
+            y: d3.randomUniform(params.height * .15, params.height * .85)(),
+            r: Math.max(.1, d3.randomNormal(params.rMean, params.rSD)()),
+            vx: d3.randomUniform(-1, 1)() * params.velocity,
+            vy: d3.randomUniform(-1, 1)() * params.velocity,
             group: groupArray[i]
         })
     );
 
+    console.log("dataCity.density: " + dataCity.density);
+
     return points;
 }
 
-// Function to generate particles chart
+function addParticles(container, data, assign, city) {
 
-function particles(selection, city) {
+    // Function to generate particles chart
 
     // Read data
-    const nodes = genpoints(city).map(Object.create);
+    const dataCity = data.filter(d => d.city == city);
+    const nodes = genpoints(data, assign, city).map(Object.create);
 
-    // Panel
-    const svg = selection.append("svg")
-        .attr("width", width * .49)
-        .attr("height", height * 1.1)
-        .attr("viewBox", [0, 0, width * .49, height * 1.1])
-        .attr("style", "max-width: 100%; height: auto; height: intrinsic");
-
-    // Chart box
-    svg.append("rect")
-        .attr("width", width * .49)
-        .attr("height", height)
-        .attr("fill", "#f7f7f7")
-        .attr("stroke", "#bcbcbc")
-        .attr("stroke-width", 1);
+    const panel = container.append("g");
 
     // Bottom label
-    const densityStat = d3.format(",.2r")(city[0].density);
-    svg.append("text")
+    const densityStat = d3.format(",.2r")(dataCity.density);
+    panel.append("text")
         .attr("id", "chart-text")
-        .attr("x", width * .49 / 2)
-        .attr("y", height * 1.075)
+        .attr("x", params.width / 2)
+        .attr("y", params.height * 1.075)
         .attr("text-anchor", "middle")
-        .text(`${densityStat} people/km²`);
+        .text(`${ densityStat } people/km²`);
 
     // Draw particles
-    const node = svg.append("g")
+    const node = panel.append("g")
         .selectAll("circle")
         .data(nodes)
         .join("circle")
@@ -159,58 +209,55 @@ function particles(selection, city) {
         .attr("fill", (d) => color(d.group));
     
     // Define forces
-    const simulation = d3.forceSimulation(nodes)
+    d3.forceSimulation(nodes)
         .force("bounce", d3.forceBounce()
             .radius(d => d.r + .5))
         .force("surface", d3.forceSurface()
-            .surfaces(bbox([[0, 0], [width * .49, height]]))
+            .surfaces(bbox([[0, 0], [params.width, params.height]]))
             .oneWay(true)
             .radius(d => d.r + 1))
         .force('limit', d3.forceLimit()
-            .x0(0).x1(width * .49).y0(0).y1(height))
+            .x0(0).x1(params.width).y0(0).y1(params.height))
         .alphaDecay(0)
         .velocityDecay(0)
         .on("tick", () => { node.attr("cx", d => d.x).attr("cy", d => d.y) });
 }
 
-// Function to generate legend
-
-function legend(selection) {
+function addLegend(container) {
     
-    const legendWidth = 390;
-    const legendHeight = 34;
     const rLegend = .5;
     
-    const legendBox = selection.append("svg")
-        .attr("width", legendWidth)
-        .attr("height", legendHeight)
-        .attr("viewBox", [0, 0, legendWidth, legendHeight])
-        .attr("style", "max-width: 90%; height: auto; height: intrinsic;");
+    const native = container.append("g")
+        .attr("transform", "translate(5, 20)")
     
-    legendBox.append("circle")
+    native.append("circle")
         .attr("cx", rLegend + "rem")
         .attr("cy", ".5rem")
-        .attr("fill", "#4889ab")
+        .attr("fill", color(1))
         .attr("r", rLegend + "rem");
 
-    legendBox.append("text")
+    native.append("text")
         .attr("x", (rLegend * 3) + "rem")
         .attr("y", ".85rem")
         .attr("text-anchor", "left")
         .text("Native ancestors");
 
-    legendBox.append("g")
+    const foreign = container.append("g")
+        .attr("transform", "translate(200, 20)")
+
+    foreign.append("g")
         .selectAll("circle")
         .data([1, 2, 3, 4])
         .join("circle")
-        .attr("cx", d => (9 + rLegend + (d - 1) * rLegend * 3) + "rem")
+        .attr("cx", d => (rLegend + (d - 1) * rLegend * 3) + "rem")
         .attr("cy", ".5rem")
         .attr("fill", d => color(d + 1))
         .attr("r", rLegend + "rem");
 
-    legendBox.append("text")
-        .attr("x", (9 + rLegend * 3 * 4) + "rem")
+    foreign.append("text")
+        .attr("x", (rLegend * 3 * 4) + "rem")
         .attr("y", ".85rem")
         .attr("text-anchor", "left")
         .text("Migrant ancestors");
-}
+};
+

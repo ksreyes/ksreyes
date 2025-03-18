@@ -27,33 +27,6 @@
     padding: 15px 10px 10px 10px;
 }
 
-/*** Mid-width ***************************************************************/
-
-@media screen and (max-width: 750px) {
-
-    .projects-tiles {
-        grid-template-columns: repeat(3, 1fr);
-        column-gap: .75rem;
-        row-gap: .75rem;
-    }
-
-}
-
-/*** Mobile ***************************************************************/
-
-@media screen and (max-width: 500px) {
-
-    .projects-tiles {
-        grid-template-columns: repeat(2, 1fr);
-        column-gap: .75rem;
-        row-gap: .75rem;
-    }
-
-    .project-tile {
-        height: 200px;
-    }
-}
-
 .project-tile-box {
     position: absolute;
     top: 0;
@@ -96,6 +69,34 @@
     color: var(--green4);
     font-weight: normal;
 }
+
+/*** Mid-width ***************************************************************/
+
+@media screen and (max-width: 750px) {
+
+    .projects-tiles {
+        grid-template-columns: repeat(3, 1fr);
+        column-gap: .75rem;
+        row-gap: .75rem;
+    }
+
+}
+
+/*** Mobile ***************************************************************/
+
+@media screen and (max-width: 500px) {
+
+    .projects-tiles {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: .75rem;
+        row-gap: .75rem;
+    }
+
+    .project-tile {
+        height: 200px;
+    }
+}
+
 
 /*** Hover effects ***************************************************************/
 
