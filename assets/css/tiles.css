@@ -23,13 +23,13 @@
 
 .project-tile-link {
     display: flex;
+    flex-direction: column;
     align-items: center;
     text-align: center;
-    flex-direction: column;
     height: 100%;
     color: var(--green3);
     font-weight: normal;
-    padding: .8rem .5rem;
+    padding: .8rem .6rem 1rem .6rem;
 }
 
 .project-tile-box {
@@ -49,54 +49,28 @@
     align-items: center;
     width: 120px;
     height: 120px;
+    overflow: hidden;
 }
 
 .project-tile-title {
-    font-size: 1.2em;
+    font-size: 1.2rem;
     font-weight: 500;
-    line-height: 1em;
+    line-height: 1.5rem;
     text-align: center;
-    margin: 10px 0px;
+    text-wrap: balance;
+    margin: .5rem 0;
 }
 
 .project-tile-desc {
     font-size: .8em;
-    margin: 0px;
+    text-wrap: balance;
+    margin: 0;
 }
-
 
 .project-tile-link .project-tile-desc {
     color: var(--green4);
     font-weight: normal;
 }
-
-/*** Mid-width ***************************************************************/
-
-/* @media screen and (max-width: 750px) {
-
-    .projects-tiles {
-        grid-template-columns: repeat(3, 1fr);
-        column-gap: .75rem;
-        row-gap: .75rem;
-    }
-
-} */
-
-/*** Mobile ***************************************************************/
-
-/* @media screen and (max-width: 500px) {
-
-    .projects-tiles {
-        grid-template-columns: repeat(2, 1fr);
-        column-gap: .75rem;
-        row-gap: .75rem;
-    }
-
-    .project-tile {
-        height: 200px;
-    }
-} */
-
 
 /*** Hover effects ***************************************************************/
 
@@ -126,20 +100,17 @@
 
 #twopoints .project-tile-logo img {
     opacity: .7;
-    width: 110px;
+    width: 100px;
     height: auto;
-}
-
-#twopoints.project-tile:hover .project-tile-logo img {
-    opacity: .9;
-    transition: opacity .1s ease-in;
-}
-
-#twopoints .project-tile-logo img {
     animation-name: rotate;
     animation-duration: 30s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
+}
+
+#twopoints.project-tile:hover img {
+    opacity: .9;
+    transition: opacity .1s ease-in;
 }
 
 @keyframes rotate {
@@ -299,5 +270,28 @@
 #mrio.project-tile:hover {
     --mrio-base-opacity: .6;
     --mrio-highlight-opacity: 1;
+}
+
+/* Snapshot */
+
+#snapshot img {
+    opacity: .7;
+    width: 120%;
+    height: auto;
+    animation-name: pan-vertically;
+    animation-duration: 10s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+}
+
+#snapshot.project-tile:hover img {
+    opacity: .9;
+    transition: opacity .1s ease-in;
+}
+
+@keyframes pan-vertically {
+    0% { transform: translateY(20%); }
+    50% { transform: translateY(-20%); }
+    100% { transform: translateY(20%); }
 }
 
