@@ -6,7 +6,7 @@ import * as colors from "../colors.js";
 const params = { 
     width: 450, 
     height: 400, 
-    formLabelsHeight: 90,
+    formLabelsHeight: 110,
     legendWidth: 450,
     legendHeight: 40,
     rMean: 5
