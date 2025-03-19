@@ -10,10 +10,14 @@ body {
     padding-top: 10rem;
 }
 
+::selection {
+    background: var(--yellow4);
+  }
+
 hr {
     width: 10rem;
     border-color: var(--green5);
-    margin: 3rem 0 0 0;
+    margin: 3rem auto 0 auto;
 }
 
 a {
@@ -35,28 +39,49 @@ a:hover {
     left: 0;
     right: 0;
     z-index: 99;
-}
-
-.brand {
     display: flex;
-    width: auto;
-    height: auto;
+    gap: 1rem;
+    align-items: flex-end;
     background-color: var(--green2);
     padding: 5px 40px;
 }
 
-a.brand-title {
+.nav-title {
     width: 140px;
-    font-size: 1em;
     font-weight: 500;
     text-align: center;
     color: var(--green5);
 }
 
-a.brand-title:hover {
-    font-size: 1.02em;
-    color: var(--green6);
+.nav-title:hover {
+    font-size: 1.02rem;
+    color: var(--green7);
     transition: font-size .1s ease-in, color .05s ease-in
+}
+
+.nav-email {
+    font-size: .8rem;
+    color: var(--green4);
+    text-transform: uppercase;
+    padding-bottom: .1rem;
+}
+
+@media (max-width: 700px) {
+
+    .site-header {
+        flex-direction: column;
+        gap: 0;
+        align-items: center;
+    }
+
+    .nav-title {
+        font-size: .9rem;
+    }
+
+    .nav-email {
+        font-size: .7rem;
+        padding-bottom: 0;
+    }
 }
 
 /*** Body **************************************/
@@ -92,11 +117,13 @@ a.brand-title:hover {
     flex-direction: row;
     justify-content: center;
     gap: 1.5rem;
+    margin-left: 1.5rem;
 }
 
 .hero-pic img {
-    width: 300px;
+    width: min(30vw, 300px);
     height: 100%;
+    object-fit: cover;
 }
 
 .hero-bio {
@@ -104,6 +131,7 @@ a.brand-title:hover {
     flex-direction: column;
     justify-content: flex-end;
     margin: 1rem 0;
+    text-wrap: balance;
 }
 
 .hero-bio > * {
@@ -166,7 +194,7 @@ footer {
 
 /*** Break points ******************************/
 
-@media (max-width: 630px) {
+@media (max-width: 600px) {
 
     body {
         padding-top: 5rem;
@@ -176,6 +204,7 @@ footer {
         flex-wrap: wrap;
         gap: 0;
         text-align: center;
+        margin-left: 0;
     }
 
     .hero-pic img {
