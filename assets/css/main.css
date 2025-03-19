@@ -1,4 +1,8 @@
 
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
 body {
     font-family: var(--body-font-family), sans-serif;
     background-color: var(--green8);
@@ -7,13 +11,20 @@ body {
 }
 
 hr {
-    width: 200px;
+    width: 10rem;
     border-color: var(--green5);
-    margin: 50px 0px 10px 0px;
+    margin: 3rem 0 0 0;
 }
 
-* {
-    box-sizing: border-box;
+a {
+    text-decoration: none;
+    font-weight: 700;
+    color: var(--green3);
+}
+
+a:hover {
+    color: var(--green4);
+    transition: color .1s ease-in;
 }
 
 /*** Header bar ********************************/
@@ -64,27 +75,15 @@ a.brand-title:hover {
         [content-start] min(100% - (var(--padding-inline) * 2), var(--content-max-width)) [content-end] 
         minmax(0, var(--breakout-size)) [breakout-end] 
         minmax(var(--padding-inline), 1fr) [full-width-end];
+    justify-items: center;
 }
 
-.content-grid > * {
+.content-grid > :not(.breakout) {
     grid-column: content;
 }
 
-main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-a {
-    text-decoration: none;
-    font-weight: 700;
-    color: var(--green3);
-}
-
-a:hover {
-    color: var(--green4);
-    transition: color .1s ease-in;
+.content-grid > .breakout {
+    grid-column: breakout;
 }
 
 /*** Hero banner *******************************/
@@ -105,6 +104,7 @@ a:hover {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
+    margin: 1rem 0;
 }
 
 .hero-bio > * {
