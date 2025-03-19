@@ -1,9 +1,9 @@
 
 body {
     font-family: var(--body-font-family), sans-serif;
-    background-color: #f8f9fa;
+    background-color: var(--green8);
     color: hsl(0, 0%, 20%);
-    padding-top: 150px;
+    padding-top: 10rem;
 }
 
 hr {
@@ -12,14 +12,18 @@ hr {
     margin: 50px 0px 10px 0px;
 }
 
-/* Header bar */
+* {
+    box-sizing: border-box;
+}
+
+/*** Header bar ********************************/
 
 .site-header {
     position: fixed;
     top: 0;
-    right: 0;
     left: 0;
-    z-index: 1030;
+    right: 0;
+    z-index: 99;
 }
 
 .brand {
@@ -44,120 +48,32 @@ a.brand-title:hover {
     transition: font-size .1s ease-in, color .05s ease-in
 }
 
-/* Body */
+/*** Body **************************************/
 
-.content {
+.content-grid {
+    --padding-inline: 2rem;
+    --content-max-width: 800px;
+    --breakout-max-width: 1000px;
+    --breakout-size: calc((var(--breakout-max-width) - var(--content-max-width)) / 2);
+
     display: grid;
     gap: 0;
     grid-template-columns: 
-        [screen-start]                  1.5em 
-        [screen-start-inset]            5fr 
-        [page-start page-start-inset]   35px 
-        [body-start-outset]             35px 
-        [body-start]                    1.5em 
-        [body-content-start]            minmax(500px, calc( 850px - 3em ))
-        [body-content-end]              1.5em 
-        [body-end]                      35px 
-        [body-end-outset]               35px 
-        [page-end-inset page-end]       5fr 
-        [screen-end-inset]              1.5em;
-    min-height: calc(-72px + 100vh);
+        [full-width-start] minmax(var(--padding-inline), 1fr)
+        [breakout-start] minmax(0, var(--breakout-size))
+        [content-start] min(100% - (var(--padding-inline) * 2), var(--content-max-width)) [content-end] 
+        minmax(0, var(--breakout-size)) [breakout-end] 
+        minmax(var(--padding-inline), 1fr) [full-width-end];
 }
 
-.content > * {
-    grid-column: body-content-start / body-content-end;
+.content-grid > * {
+    grid-column: content;
 }
-
-/*** Mid-width ***************************************************************/
-
-@media screen and (max-width: 900px) {
-
-    .content {
-        display: grid;
-        gap: 0;
-        grid-template-columns: 
-            [screen-start]                  1.5em 
-            [screen-start-inset 
-                page-start 
-                page-start-inset 
-                body-start-outset 
-                body-start 
-                body-content-start]         minmax(0px, 1fr) 
-            [body-content-end 
-                body-end 
-                body-end-outset 
-                page-end-inset 
-                page-end 
-                screen-end-inset]           1.5em
-            [screen-end];
-    }
-
-    .content>* {
-        grid-column: page-start / body-content-end;
-    }
-}
-
-/*** Mobile ******************************************************************/
-
-@media screen and (max-width: 500px) {
-
-    body {
-        font-size: 10pt;
-        line-height: 1.2em;
-        padding-top: 50px;
-    }
-
-    .brand {
-        padding: 3px 0px;
-    }
-
-    .content {
-        display: grid;
-        gap: 0;
-        grid-template-columns: 
-            [screen-start]                  1.5em 
-            [screen-start-inset 
-                page-start 
-                page-start-inset 
-                body-start-outset 
-                body-start 
-                body-content-start]         minmax(0px, 1fr) 
-            [body-content-end 
-                body-end 
-                body-end-outset 
-                page-end-inset 
-                page-end 
-                screen-end-inset]           1.5em
-            [screen-end];
-    }
-
-    .content > * {
-        grid-column: page-start / body-content-end;
-    }
-
-    .profile-pic {
-        display: none;
-        /* width: 100px;
-        height: auto;
-        margin-right: 10px; */
-    }
-
-    #bio {
-        padding-top: 0px;
-    }
-
-    #bio h1 {
-        margin-top: 0px;
-    }
-
-}
-
 
 main {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 1em;
 }
 
 a {
@@ -171,71 +87,47 @@ a:hover {
     transition: color .1s ease-in;
 }
 
-/* Banner */
+/*** Hero banner *******************************/
 
-.banner {
-    max-width: 800px;
+.hero {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
+    gap: 1.5rem;
 }
 
-#bio {
-    padding-top: 50px;
-}
-
-#bio h1 {
-    margin-bottom: 0px;
-}
-
-.profile-pic {
+.hero-pic img {
     width: 300px;
-    height: auto;
-    margin-right: 40px;
+    height: 100%;
 }
 
-.profile-pic:hover {
-    cursor: pointer;
+.hero-bio {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
-.shake {
-    animation: shake 0.5s ease-in;
-    animation-iteration-count: 1;
-}
-  
-@keyframes shake {
-    0% { transform: translate(1px, 1px) rotate(0deg); }
-    10% { transform: translate(-1px, -2px) rotate(-1deg); }
-    20% { transform: translate(-3px, 0px) rotate(1deg); }
-    30% { transform: translate(3px, 2px) rotate(0deg); }
-    40% { transform: translate(1px, -1px) rotate(1deg); }
-    50% { transform: translate(-1px, 2px) rotate(-1deg); }
-    60% { transform: translate(-3px, 1px) rotate(0deg); }
-    70% { transform: translate(3px, 1px) rotate(-1deg); }
-    80% { transform: translate(-1px, -1px) rotate(1deg); }
-    90% { transform: translate(1px, 2px) rotate(0deg); }
-    100% { transform: translate(1px, -2px) rotate(-1deg); }
+.hero-bio > * {
+    margin: .5rem 0;
 }
 
-.green {
+.emph {
     color: var(--green3);
 }
 
-/* Bio buttons */
-
-.bio-buttons {
+.hero-buttons {
     display: flex;
     flex-direction: row;
+    gap: .8rem;
 }
 
-.bio-buttons a {
+.hero-buttons a {
     font-weight: normal;
 } 
 
-.bio-button {
+.hero-button {
     width: auto;
     background: var(--green4);
-    margin-right: 10px;
     padding: 2px 10px;
     align-items: center;
     text-align: center;
@@ -244,16 +136,17 @@ a:hover {
     border-radius: 3px;
 }
 
-.bio-button:hover {
+.hero-button:hover {
     transform: scale(1.05);
     background: var(--green3);
     transition: background .1s ease-in, transform .1s ease-in;
 }
 
-/* Footer */
+/*** Footer ************************************/
 
 footer {
     display: block;
+    margin-top: 10rem;
 }
 
 .page-footer {
@@ -270,4 +163,33 @@ footer {
     text-align: center;
     font-size: .825em;
     color: var(--gray2);
+}
+
+/*** Break points ******************************/
+
+@media (max-width: 630px) {
+
+    body {
+        padding-top: 5rem;
+    }
+
+    .hero {
+        flex-wrap: wrap;
+        gap: 0;
+        text-align: center;
+    }
+
+    .hero-pic img {
+        width: 150px;
+        border-radius: 50%;
+    }
+
+    .hero-bio > * {
+        /* margin: .25rem 0; */
+    }
+
+    .hero-buttons {
+        justify-content: center;
+    }
+
 }

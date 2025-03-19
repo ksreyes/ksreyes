@@ -22,8 +22,6 @@ d3.select(".page-icon").call(popden);
 
 // Dashboard //////////////////////////////////////////////////////////////////
 
-// Forms annotations
-
 d3.select("#particles-container .annotation.annotation-forms")
     .call(addFormsAnnotation, params);
 
@@ -44,12 +42,14 @@ const bbox = ([[x1, y1], [x2, y2]]) => [
     { from: { x: x2, y: y1 }, to: { x: x1, y: y1 } }
 ];
 
-// Panels
+// Render panels //////////////////////////////////////////////////////////////
 
 const panelLeft = d3.select("#particles-container .panel-left")
     .append("svg")
         .attr("width", params.width)
         .attr("height", params.height)
+        // .attr("width", 100%)
+        // .attr("height", params.height)
         .attr("viewBox", [0, 0, params.width, params.height]);
 
 const panelRight = d3.select("#particles-container .panel-right")
@@ -67,9 +67,6 @@ panelRight.append("rect")
     .attr("class", "panel-bg")
     .attr("width", params.width)
     .attr("height", params.height);
-
-
-// Render panels //////////////////////////////////////////////////////////////
 
 Promise.all([
 
