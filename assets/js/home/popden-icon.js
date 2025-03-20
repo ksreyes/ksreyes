@@ -48,7 +48,7 @@ export function popden(container) {
             .attr("r", d => d.r);
     
     // Define forces
-    const simulation = d3.forceSimulation(nodes)
+    d3.forceSimulation(nodes)
         .force("bounce", d3.forceBounce()
             .radius(d => d.r + .1))
         .force("surface", d3.forceSurface()
