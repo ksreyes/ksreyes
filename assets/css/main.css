@@ -43,7 +43,8 @@ a:hover {
     gap: 1rem;
     align-items: flex-end;
     background-color: var(--green2);
-    padding: 5px 40px;
+    /* padding: 5px max(10vw, 40px); */
+    padding: 5px 10vw;
 }
 
 .nav-title {
