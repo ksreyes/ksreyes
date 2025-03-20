@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,11 +5,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kenneth S. Reyes</title>
     <script src="https://d3js.org/d3.v7.min.js"></script>
-    <script src="https://unpkg.com/d3-force-bounce/dist/d3-force-bounce.min.js"></script>
-    <script src="https://unpkg.com/d3-force-surface/dist/d3-force-surface.min.js"></script>
-    <script src="https://unpkg.com/d3-force-limit"></script>
     <script src="https://unpkg.com/topojson@3"></script>
     <script src="https://unpkg.com/geometric@2.5.5/build/geometric.js"></script>
+    <script src="https://unpkg.com/d3-force-limit"></script>
+    <script src="https://unpkg.com/d3-force-surface"></script>
+    <script src="https://unpkg.com/d3-force-bounce"></script>
     <link rel="stylesheet" href="./assets/css/vars.css">
     <link rel="stylesheet" href="./assets/css/main.css">
     <link rel="stylesheet" href="./assets/css/tiles.css">
@@ -29,9 +28,11 @@
         <!-- Banner block -->
 
         <div class="hero">
+
             <div class="hero-pic">
                 <img src="assets/images/profile.jpg">
             </div>
+
             <div class="hero-bio">
                 <h1>My name is <span class="emph">Ken</span>,</h1>
                 <p>and I make charts using code. My skills lie at the intersection of <span class="emph"><b>data science</b></span>, <span class="emph"><b>web development</b></span>, and <span class="emph"><b>graphic design</b></span>.</p>
@@ -42,6 +43,7 @@
                     <a href="https://github.com/ksreyes"><div class="hero-button">GitHub</div></a>
                 </div>
             </div>
+
         </div>
 
         <hr>
@@ -58,7 +60,7 @@
                 <div class="project-tile" id="twopoints">
                     <a href="https://twopoints.blog" class="project-tile-link">
                         <div class="project-tile-logo">
-                            <img src="assets/images/twopoints.png">
+                            <img src="./assets/images/twopoints.png">
                         </div>
                         <span class="project-tile-title">Two Points Make a Line</span>
                         <p class="project-tile-desc">A dataviz blog</p>
@@ -100,7 +102,7 @@
                 <div class="project-tile" id="snapshot">
                     <a href="./snapshot/index.html" class="project-tile-link">
                         <div class="project-tile-logo">
-                            <img src="assets/images/snapshot-sample.jpg">
+                            <img src="./assets/images/snapshot-sample.jpg">
                         </div>
                         <span class="project-tile-title">Snapshot</span>
                         <p class="project-tile-desc">Automated generation of statistical reports</p>
@@ -120,6 +122,7 @@
                 
             </div>
         </div>
+       
     </main>
 
     <!-- Footer -->
@@ -131,6 +134,5 @@
     </footer>
 
     <script type="module" src="assets/js/home/main.js"></script>
-
 </body>
 </html>
